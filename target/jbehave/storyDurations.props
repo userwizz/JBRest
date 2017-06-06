@@ -1,0 +1,6 @@
+#org.jbehave.core.embedder.StoryManager
+#Tue Jun 06 22:19:37 EEST 2017
+com/mydoman/stories/rest_story.story=1000
+threads=1
+total=1000
+threadAverage=1000
