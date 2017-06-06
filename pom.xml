@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>JBRest</groupId>
+  <artifactId>JBRest</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <!-- plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source/>
+          <target/>
+        </configuration>
+      </plugin-->
+      
+		<plugin>
+			<groupId>org.jbehave</groupId>
+		    <artifactId>jbehave-maven-plugin</artifactId>
+		    <version>4.1.1</version>
+		    <executions>
+		        <execution>
+		            <id>run-stories-as-embeddables</id>
+		            <phase>integration-test</phase>
+		            <configuration>
+		                <includes>
+		                    <include>**/*Story.java</include>
+		                </includes>
+		                <!-- ignoreFailureInStories>true</ignoreFailureInStories>
+		                <ignoreFailureInView>false</ignoreFailureInView-->
+		            </configuration>
+		            <goals>
+		                <goal>run-stories-as-embeddables</goal>
+		            </goals>
+		        </execution>
+	    	</executions>
+		</plugin>
+      
+    </plugins>
+  </build>
+  
+   <dependencies>
+    <dependency>
+        <groupId>org.jbehave</groupId>
+        <artifactId>jbehave-core</artifactId>
+        <version>4.1.1</version>
+    </dependency>        
+  	<dependency>
+    	<groupId>org.apache.httpcomponents</groupId>
+    	<artifactId>httpclient</artifactId>
+    	<version>4.5.3</version>
+	</dependency>
+  </dependencies>
+  
+</project>
