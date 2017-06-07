@@ -7,41 +7,74 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.junit.Assert;
+
+import com.mydomain.core.HttpUtils;
+
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.ContentType;
 
 
 public class RestSteps {
 	
+	
+	private HttpUtils httpUtils;
 	private HttpUriRequest request;
 	private HttpResponse httpResponse;
 	
-	@Given ("Create a new HTTP request")
-	public void init (){
+	
+	public RestSteps (){
+		httpUtils = new HttpUtils("https://api.github.com/users/");
+	}
 		
-	   String name = RandomStringUtils.randomAlphabetic( 8 );
-	    request = new HttpGet( "https://api.github.com/users/" + name );
+	
+	// # Status code #
+	
+	@Given ("Create a new HTTP request using invalid user")
+	public void createHttpRequestUsingRandomUser (){
+	
+	    request = httpUtils.getHttpRequest(RandomStringUtils.randomAlphabetic( 8 ));
 	}
 	
 	@When ("Get HTTP response using invalid user name")
 	public void getHttpResponse () throws ClientProtocolException, IOException
 	{
-		httpResponse = HttpClientBuilder.create().build().execute( request );
+		httpResponse = httpUtils.getHttpResponse(request);
 		
 	}
 
-	  
 	@Then ("Response is SC_NOT_FOUND")
-	public void verifyResponse ()
+	public void verifyStatusCode ()
 	{
-		System.out.println(httpResponse.getStatusLine());
-		Assert.assertEquals(
-				httpResponse.getStatusLine().getStatusCode(),
-				HttpStatus.SC_NOT_FOUND);
+		Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(),HttpStatus.SC_NOT_FOUND);
 	}
+	
+	
+	// # Media type #
+	
+	@Given ("Create new HTTP request using valid user: $userName")
+	public void createHttpRequest(String userName)
+	{
+		request = httpUtils.getHttpRequest(userName);
+	}
+	
+	@When ("Get HTTP response using valid user")
+	public void getHttpResponseValidUser () throws ClientProtocolException, IOException
+	{
+		httpResponse = httpUtils.getHttpResponse(request);
+	}
+ 
+	@Then ("Media type is $mediaType")
+	public void verifyMediaType (String mediaType) {
+
+		Assert.assertEquals( mediaType, ContentType.getOrDefault(httpResponse.getEntity()).getMimeType() );
+
+	}
+	
+	
+	// # JSON payload #
+	// ToDo
 
 }

@@ -1,4 +1,4 @@
-package com.mydoman.stories;
+package com.mydomain.stories;
 
 import java.util.List;
 
