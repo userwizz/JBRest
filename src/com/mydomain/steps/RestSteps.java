@@ -8,7 +8,8 @@ import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.junit.Assert;
 
-import com.mydomain.core.HttpUtils;
+import com.mydomain.utils.GitHubUser;
+import com.mydomain.utils.HttpUtils;
 
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.HttpResponse;
@@ -75,6 +76,13 @@ public class RestSteps {
 	
 	
 	// # JSON payload #
-	// ToDo
+		 
+	@Then ("Verify that value of 'login' is: $userwizz")
+	public void verifyAttribute(String userName) throws IOException{
+			
+	    GitHubUser resource = httpUtils.parseResourceFromResponse(httpResponse, GitHubUser.class);
+	    Assert.assertEquals( userName, resource.getLogin().trim());
+	}
+
 
 }

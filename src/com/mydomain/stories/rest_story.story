@@ -14,3 +14,8 @@ Scenario: Check media type (JSON)
 Given Create new HTTP request using valid user: userwizz
 When Get HTTP response using valid user
 Then Media type is application/json
+
+Scenario: Verfify login attribute from JSON payload
+Given Create new HTTP request using valid user: userwizz
+When Get HTTP response using valid user
+Then Verify that value of 'login' is: userwizz

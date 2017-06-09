@@ -34,7 +34,6 @@ public class RestStory extends JUnitStory {
 	@Override
 	public List<CandidateSteps> candidateSteps() {
 		// varargs, can have more that one steps classes
-
 		return  new InstanceStepsFactory(configuration(), new RestSteps()).createCandidateSteps();
 		
 	}

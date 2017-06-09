@@ -1,6 +1,7 @@
 target/*
-*.class
-*.zip
 .classpath
 .project
+.settings
+*.class
+*.zip
 *.exe
