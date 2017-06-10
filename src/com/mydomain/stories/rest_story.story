@@ -7,15 +7,15 @@ I want to use Behaviour-Driven Development
 Scenario: Check status code for invalid user (SC_NOT_FOUND)
 Given Create a new HTTP request using invalid user
 When Get HTTP response using invalid user name
-Then Response is SC_NOT_FOUND
+Then Response is: 404
 
 
 Scenario: Check media type (JSON)
 Given Create new HTTP request using valid user: userwizz
 When Get HTTP response using valid user
-Then Media type is application/json
+Then Media type is: application/json
 
-Scenario: Verfify login attribute from JSON payload
+Scenario: Verify login attribute from JSON payload
 Given Create new HTTP request using valid user: userwizz
 When Get HTTP response using valid user
 Then Verify that value of 'login' is: userwizz

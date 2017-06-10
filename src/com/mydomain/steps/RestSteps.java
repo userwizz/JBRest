@@ -13,7 +13,6 @@ import com.mydomain.utils.HttpUtils;
 
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.entity.ContentType;
 
@@ -46,10 +45,10 @@ public class RestSteps {
 		
 	}
 
-	@Then ("Response is SC_NOT_FOUND")
-	public void verifyStatusCode ()
+	@Then ("Response is: $statusCode")
+	public void verifyStatusCode (int statusCode)
 	{
-		Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(),HttpStatus.SC_NOT_FOUND);
+		Assert.assertEquals(httpResponse.getStatusLine().getStatusCode(), statusCode);
 	}
 	
 	
@@ -67,7 +66,7 @@ public class RestSteps {
 		httpResponse = httpUtils.getHttpResponse(request);
 	}
  
-	@Then ("Media type is $mediaType")
+	@Then ("Media type is: $mediaType")
 	public void verifyMediaType (String mediaType) {
 
 		Assert.assertEquals( mediaType, ContentType.getOrDefault(httpResponse.getEntity()).getMimeType() );
@@ -81,7 +80,7 @@ public class RestSteps {
 	public void verifyAttribute(String userName) throws IOException{
 			
 	    GitHubUser resource = httpUtils.parseResourceFromResponse(httpResponse, GitHubUser.class);
-	    Assert.assertEquals( userName, resource.getLogin().trim());
+	    Assert.assertEquals( userName, resource.getLogin());
 	}
 
 
