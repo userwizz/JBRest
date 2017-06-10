@@ -76,7 +76,7 @@ public class RestSteps {
 	
 	// # JSON payload #
 		 
-	@Then ("Verify that value of 'login' is: $userwizz")
+	@Then ("Verify that value of 'login' is: $userName")
 	public void verifyAttribute(String userName) throws IOException{
 			
 	    GitHubUser resource = httpUtils.parseResourceFromResponse(httpResponse, GitHubUser.class);
