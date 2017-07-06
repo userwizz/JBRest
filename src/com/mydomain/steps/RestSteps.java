@@ -35,13 +35,13 @@ public class RestSteps {
 	@Given ("Create a new HTTP request using invalid user")
 	public void createHttpRequestUsingRandomUser (){
 	
-	    request = httpUtils.getHttpRequest(RandomStringUtils.randomAlphabetic( 8 ));
+	    request = getHttpRequest(RandomStringUtils.randomAlphabetic( 8 ));
 	}
 	
 	@When ("Get HTTP response using invalid user name")
 	public void getHttpResponse () throws ClientProtocolException, IOException
 	{
-		httpResponse = httpUtils.getHttpResponse(request);
+		httpResponse = getHttpResponse(request);
 		
 	}
 
@@ -57,13 +57,13 @@ public class RestSteps {
 	@Given ("Create new HTTP request using valid user: $userName")
 	public void createHttpRequest(String userName)
 	{
-		request = httpUtils.getHttpRequest(userName);
+		request = getHttpRequest(userName);
 	}
 	
 	@When ("Get HTTP response using valid user")
-	public void getHttpResponseValidUser () throws ClientProtocolException, IOException
+	public void getHttpResponseValidUser () throws ClientProtocolException, IOException 
 	{
-		httpResponse = httpUtils.getHttpResponse(request);
+		httpResponse = getHttpResponse(request);
 	}
  
 	@Then ("Media type is: $mediaType")
@@ -84,4 +84,6 @@ public class RestSteps {
 	}
 
 
+	private HttpUriRequest getHttpRequest(String userName) {return httpUtils.getHttpRequest(userName);}
+	private HttpResponse getHttpResponse(HttpUriRequest request) throws ClientProtocolException, IOException {return httpUtils.getHttpResponse(request);}
 }
