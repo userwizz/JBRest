@@ -70,7 +70,7 @@ public class SeleniumStory extends JUnitStories {
     @Override
     protected List<String> storyPaths() {
         return new StoryFinder()
-                .findPaths(codeLocationFromClass(this.getClass()).getFile(), asList("**/*.story"), null);
+                .findPaths(codeLocationFromClass(this.getClass()).getFile(), asList("**/selenium_story.story"), null);
 }
  
 }
