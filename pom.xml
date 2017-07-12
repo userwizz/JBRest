@@ -11,7 +11,8 @@
 	    <apache.httpcomponents.version>4.5.3</apache.httpcomponents.version>
 		<google.guava.version>11.0.1</google.guava.version>
 		<fasterxml.jackson.core.version>2.0.2</fasterxml.jackson.core.version>
-		<selenium.fluent.version>1.18</selenium.fluent.version>	    
+		<selenium.fluent.version>1.18</selenium.fluent.version>	
+		<chromedriver.path>/usr/local/bin/chromedriver</chromedriver.path>    
 	</properties>
  
    	<build>
@@ -82,6 +83,16 @@
 			                </includes>
 			                <!-- ignoreFailureInStories>true</ignoreFailureInStories>
 			                <ignoreFailureInView>false</ignoreFailureInView-->
+			                <systemProperties>
+							    <property>
+							        <name>browser</name>
+							        <value>chrome</value>
+							    </property>
+							    <property>
+							        <name>webdriver.chrome.driver</name>
+							        <value>${chromedriver.path}</value>
+							    </property>
+							</systemProperties>
 			            </configuration>
 			            <goals>
 			                <goal>run-stories-as-embeddables</goal>

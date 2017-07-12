@@ -38,10 +38,10 @@ public class SeleniumStory extends JUnitStories {
     private SeleniumContext context = new SeleniumContext();
     
     public SeleniumStory() {
-        if ( lifecycleSteps instanceof PerStoryWebDriverSteps ){
+        // If  using per-stories lifecycle, ensure that you are using a same-thread executor. 
+    	// if ( lifecycleSteps instanceof PerStoriesWebDriverSteps ){ ... }
         	configuredEmbedder().useExecutorService(new SameThreadExecutors().create(configuredEmbedder().embedderControls()));
-            
-        }
+           
     }
 
     @Override

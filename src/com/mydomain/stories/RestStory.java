@@ -19,9 +19,8 @@ public class RestStory extends JUnitStory {
 	
 	@Override
 	public Configuration configuration() {
-		System.out.print(this.getClass());
 		return new MostUsefulConfiguration()
-		// where to find the stories
+				// where to find the stories
 				.useStoryLoader(new LoadFromClasspath(this.getClass()))
 				// CONSOLE and TXT reporting
 				.useStoryReporterBuilder(
@@ -30,7 +29,7 @@ public class RestStory extends JUnitStory {
 	}
 
 	
-	// Here we specify the steps classes
+	// specify the steps classes
 	@Override
 	public List<CandidateSteps> candidateSteps() {
 		// varargs, can have more that one steps classes
