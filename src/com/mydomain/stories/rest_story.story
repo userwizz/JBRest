@@ -2,7 +2,22 @@ Narrative:
 In order to communicate effectively to the business some functionality
 As a development team
 I want to use Behaviour-Driven Development
-		
+
+
+Scenario: Verify that servers needed in tests replies to ping
+Meta: 
+@info Check how to use tabular data in test
+
+Given Server <server> is needed for tests
+When Test host pings server
+Then Server should reply to ping
+
+Examples:
+|server|
+|127.0.0.1|
+|google.com|
+|github.com|	
+
 					 
 Scenario: Check status code for invalid user (SC_NOT_FOUND)
 Given Create a new HTTP request using invalid user
